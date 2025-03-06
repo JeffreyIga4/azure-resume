@@ -22,7 +22,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
  ```
  - This next binding writes back to CosmosDB each time the counter is updated
 ```js
-  [CosmosDB(databaseName: "AzureResume", containerName: "Counter", Connection = "AzureResumeConnectionString", Id = "1", PartitionKey = "1")] out Counter updatedCounter,
-  ```
+  [CosmosDB(databaseName: "AzureResume", containerName: "Counter", Connection = "AzureResumeConnectionString", Id = "1", PartitionKey = "1")] out Counter updatedCounter,  ```
+
+
+
 
   
