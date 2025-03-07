@@ -1,20 +1,28 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-    getVisitCount();
-})
+    fetch('/config.json')
+        .then(response => response.json())
+        .then(config => {
+            if (!config.functionApiUrl) {
+                throw new Error("API URL not found in config.json");
+            }
+            getVisitCount(config.functionApiUrl);
+        })
+        .catch(error => {
+            console.error("Error loading config.json", error);
+        });
+});
 
-const functionApi = '';
-
-const getVisitCount = () => {
+const getVisitCount = (functionApiUrl) => {
     let count = 30;  // default count value
-    fetch(functionApi).then(response => { // sends a request to the function API
-        return response.json()  // parses the response as JSON
-    }).then(response => {
-        console.log("Website called function API.");
-        count = response.count; // updates the count value
-        document.getElementById("counter").innerText = count; // updates the webpage with the count value
-    }).catch(function(error){
-        console.log(error); // logs any errors if they occur
-    });
+    fetch(functionApiUrl)
+        .then(response => response.json())
+        .then(response => {
+            console.log("Website called function API.");
+            count = response.count; // updates count value
+            document.getElementById("counter").innerText = count; // updates webpage
+        })
+        .catch(error => console.log("Error fetching visit count:", error));
+    
     return count;
-}
+};
 
