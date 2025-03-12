@@ -1,0 +1,5 @@
+param location string = 'northeurope'
+param storageAccountName string = 'azureresumeacg2'
+param functionAppName string = 'getresumecounter-eu'
+param cosmosDbAccountName string = 'azureresume-rg'
+param appInsightsName string = 'azureresumeappinsights'
